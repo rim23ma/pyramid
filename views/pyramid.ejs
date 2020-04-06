@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Fetch Rewards Code Challenge</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Enter your word!</h1>
+      <form id="checkForm" method="get">
+        <input type="text" id="word" onChange="updateUrl()"/>
+        <input type="submit"/>
+      </form>
+    </header>
+  </body>
+  <script>
+    function updateUrl() {
+        const url = window.location;
+        const word = document.getElementById("word").value;
+        document.getElementById("checkForm").setAttribute("action", url + '/' + word);
+    }
+</script>
+</html>

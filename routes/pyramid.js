@@ -1,26 +1,22 @@
-const router = require('express').Router()
+const router = require('express').Router();
+const Word = require('../models/Word');
 
 router.get('/', (req, res, next) => {
     try {
-        res.send('enter word to check')
+      res.render('pyramid');
     } catch(err) {
-        next(err)
+        next(err);
     }
-})
+});
 
 router.get('/:word', (req, res, next)  => {
     try {
-        const word = req.params.word;
-        const isPyramid = true;
-        if (isPyramid) {
-            res.send(`${word} is a pyramid word`)
-        } else {
-          res.send(`${word} isn't a pyramid word`)
-        }
+      const word = new Word(req.params.word);
+      res.render('answer', {word: word});
     } catch (err) {
-        console.log('err.message', err.message)
-        next(err)
+      console.log('err.message', err.message);
+      next(err);
     }
 })
 
-module.exports = router
+module.exports = router;
